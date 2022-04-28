@@ -1,26 +1,37 @@
+import compression from 'compression'
 import express from 'express'
 import config from './config/index.js'
 import cors from 'cors'
 import { serverRoutes } from './routes/index.js'
+//import logger from './config/log4js_config.js'
+//import logger from './config/winston_config.js'
+import logger from './config/pino_config.js'
+
 
 const PORT = config.port
 
 const app = express()
+
+app.use(compression())
 app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }))
 app.use(express.static('static'))
 app.use(cors("*"))
 
 serverRoutes(app)
 
+logger.info(`Valor de entorno NODE_ENV: ${process.env.NODE_ENV}`);
+
 const server = app.listen(PORT, (err) => {
     if (err) {
-        console.log("Error while starting server")
+        logger.error("Error while starting server")
     } else {
-        console.log(`Servidor http escuchando en el puerto ${server.address().port}
-                 Open link to http://127.0.0.1:${server.address().port}`)
-    }  
+        logger.info(`
+            Servidor http escuchando en el puerto ${server.address().port}
+            Open link to http://127.0.0.1:${server.address().port}`
+        )
+    }
 })
 
 
-server.on('error', error => console.log(`Error en servidor ${error}`))
+server.on('error', error => logger.error(`Error en servidor ${error}`))

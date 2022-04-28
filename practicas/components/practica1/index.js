@@ -6,6 +6,7 @@ export const practica1Api = (app) => {
     let router = express.Router()
     app.use('/api/practica1', router)
 
-    router.get('/test', practica1Controller.test)
-
+    router.get('/saludo', practica1Controller.saludo)
+    
+    router.get('/saludozip', practica1Controller.saludoZip)
 }

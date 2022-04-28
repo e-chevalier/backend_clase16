@@ -1,31 +1,34 @@
-import faker from 'faker'
-faker.locale = 'es'
-
+//import logger from "../../../config/log4js_config.js"
+//import logger from "../../../config/winston_config.js"
+import logger from "../../../config/pino_config.js"
 class Practica2 {
 
-    getTenObjects = (qty = 10) => {
-        let response = []
-        for (let i = 0; i < qty; i++) {
-            response.push(
-                {
-                    id: i + 1,
-                    nombre: faker.name.firstName(),
-                    apellido: faker.name.lastName(),
-                    color: faker.commerce.color()
-                })
+    
+
+    async sumar(req) {
+        try {
+            
+            let {a, b} = req.query
+            let response = null
+
+            if ( a && b ) {
+                    response = Number(a) + Number(b)
+                    // EXITO
+                    logger.info(`SUCCESS: The sum of ${a} + ${b} = ${response}`)
+            } else {
+                if( !a ) {
+                    logger.error(`Missing parameter a of sum`)
+                }
+                if (!b ) {
+                    logger.error(`Missing parameter b of sum`)
+                }
+            }
+            return { status: "OK", response: response }
+
+        } catch (error) {
+            logger.error(`${error}`)
         }
-        return response
     }
-
-
-    async test(query) {
-        console.log(`test practica2 - QTY: ${query.cant}`)
-
-        let response = this.getTenObjects(query.cant)
-
-        return { status: "OK", response: response }
-    }
-
 }
 
 export let practica2Service = new Practica2()

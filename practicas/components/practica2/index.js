@@ -6,6 +6,5 @@ export const practica2Api = (app) => {
     let router = express.Router()
     app.use('/api/practica2', router)
 
-    router.get('/test', practica2Controller.test)
-
+    router.get('/sumar', practica2Controller.sumar)
 }
