@@ -1,3 +1,4 @@
+
 const auth = (req, res, next) => {
 
     if( req.isAuthenticated()) {
@@ -8,4 +9,4 @@ const auth = (req, res, next) => {
 
 }
 
-export {auth}
+export default auth

@@ -8,8 +8,8 @@ log4js.configure({
         errorFile: {type: 'file', filename: './logs/error.log'},
         loggerConsole: {type: 'logLevelFilter', appender: 'console', level: 'info'},
         loggerDebugFile: {type: 'logLevelFilter', appender: 'debugFile', level: 'debug'},
-        loggerWarnFile: {type: 'logLevelFilter', appender: 'warnFile', level: 'warn'},
-        loggerErrorFile: {type: 'logLevelFilter', appender: 'errorFile', level: 'error'}
+        loggerWarnFile: {type: 'logLevelFilter', appender: 'warnFile', level: 'warn', maxLevel: 'warn'},
+        loggerErrorFile: {type: 'logLevelFilter', appender: 'errorFile', level: 'error', maxLevel: 'error'}
     },
     categories:{
         default: {appenders: ['loggerConsole'], level: 'all'},

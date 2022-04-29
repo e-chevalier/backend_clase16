@@ -1,6 +1,6 @@
 import express from 'express'
 import { viewProductsFakerController } from './controllers/viewProductsFakerController.js'
-import { auth } from '../../utils/middleware/auth.js'
+import auth from '../../utils/middleware/auth.js'
 
 export const viewProductsFakerApi = (app) => {
 
