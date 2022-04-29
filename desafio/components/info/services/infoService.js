@@ -1,4 +1,5 @@
-import os from 'os'
+import { fork } from 'child_process'
+//import getInfo from '../../../utils/js/getInfo.js'
 import logger from '../../..//utils/log4js/log4js_config.js'
 
 class Info {
@@ -6,42 +7,12 @@ class Info {
     async getInfo() {
         try {
 
-            const info = [
-                {
-                    key: 'Argumentos de entrada',
-                    value: process.argv.slice(2).join(' ')
-                },
-                {
-                    key: 'Sistema Operativo',
-                    value: process.platform
-                },
-                {
-                    key: 'Cantidad de Procesadores',
-                    value: os.cpus().length
-                },
-                {
-                    key: 'Versión de node.js',
-                    value: process.version
-                },
-                {
-                    key: 'Memoria total reservada',
-                    value: (Math.round(process.memoryUsage().rss / 1024 / 1024 * 100) / 100) + " Mb"
-                },
-                {
-                    key: 'Path de ejecución',
-                    value: process.argv[1]
-                },
-                {
-                    key: 'Process id',
-                    value: process.pid
-                },
-                {
-                    key: 'Carpeta del proyecto',
-                    value: process.cwd
-                }
-            ]
+            // let info = getInfo()
+            // return { status: "OK", info: info }
 
-            return { status: "OK", info: info }
+            let url_getinfo = process.cwd() + '/utils/js/getInfo.js'
+            const forked = fork(url_getinfo)
+            return forked
 
         } catch (error) {
             logger.error(error)
