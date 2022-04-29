@@ -1,3 +1,4 @@
+import logger from "../../../utils/log4js/log4js_config.js"
 class Failure {
 
     async getFailure(req) {
@@ -25,7 +26,7 @@ class Failure {
 
             return { status: "OK", message: message }
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 

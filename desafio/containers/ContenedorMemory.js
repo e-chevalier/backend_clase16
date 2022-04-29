@@ -1,4 +1,4 @@
-
+import logger from "../utils/log4js/log4js_config.js"
 
 class ContenedorMemory {
 
@@ -15,7 +15,7 @@ class ContenedorMemory {
             const max = this.storage.reduce((a, b) => Number(a.id) > Number(b.id) ? a : b, { id: 0 })
             return Number(max.id)
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 
@@ -32,7 +32,7 @@ class ContenedorMemory {
             return max + 1
 
         } catch (error) {
-            console.log("Error en save method: " + error)
+            logger.error("Error en save method: " + error)
         }
 
     }
@@ -48,7 +48,7 @@ class ContenedorMemory {
             return element ? element : null
 
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 
@@ -60,7 +60,7 @@ class ContenedorMemory {
         try {
             return this.storage
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 
@@ -83,7 +83,7 @@ class ContenedorMemory {
             return index
 
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
 
     }
@@ -95,7 +95,7 @@ class ContenedorMemory {
         try {
             this.storage.length = 0
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
 
     }
@@ -107,7 +107,7 @@ class ContenedorMemory {
                 this.storage[index] = {...this.storage[index], ...newElement}
             }
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 

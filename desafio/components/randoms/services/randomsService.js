@@ -1,4 +1,5 @@
 import { fork } from 'child_process'
+import logger from '../../..//utils/log4js/log4js_config.js'
 
 class Randoms {
 
@@ -11,7 +12,7 @@ class Randoms {
             return forked
         
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 

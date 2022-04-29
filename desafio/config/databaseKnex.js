@@ -1,5 +1,6 @@
 import knex from "knex";
 import { db } from "./index.js";
+import logger from "../utils/log4js/log4js_config.js";
 
 const config_db = {
     mysql: {
@@ -25,10 +26,10 @@ class Database {
     static clientSqlite3;
 
     constructor(knex_options) {
-        console.log(knex_options.client)
+        logger.info(knex_options.client)
         if (knex_options.client === 'mysql') {
             if (Database.clientMysql) {
-                //console.log(Database.client)
+                //logger.info(Database.client)
                 this.clientMysql = Database.clientMysql;
             } else {
                 Database.clientMysql = knex(knex_options);
@@ -36,7 +37,7 @@ class Database {
             }
         } else {
             if (Database.clientSqlite3) {
-                //console.log(Database. clientSqlite3)
+                //logger.info(Database. clientSqlite3)
                 this.clientSqlite3 = Database.clientSqlite3;
             } else {
                 Database.clientSqlite3 = knex(knex_options);

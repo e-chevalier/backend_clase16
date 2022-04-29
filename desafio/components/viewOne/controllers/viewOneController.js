@@ -1,4 +1,5 @@
 import { viewOneService } from '../services/viewOneService.js'
+import logger from '../../../utils/log4js/log4js_config.js';
 
 class ViewOne {
     async getViewOne(req, res, next) {
@@ -7,7 +8,7 @@ class ViewOne {
             let { status, data } = await viewOneService.getViewOne(req)
             res.render('main', data )
         } catch (error) {
-            console.log(error);
+            logger.error(error);
         }
     }
 

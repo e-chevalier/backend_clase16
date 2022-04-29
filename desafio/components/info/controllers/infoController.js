@@ -1,4 +1,5 @@
 import { infoService } from '../services/infoService.js'
+import logger from '../../../utils/log4js/log4js_config.js'
 
 class Info {
     async getInfo(req, res, next) {
@@ -8,7 +9,7 @@ class Info {
             res.render('info', { info: info })
 
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
 
     }

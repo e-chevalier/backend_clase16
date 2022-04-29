@@ -1,4 +1,5 @@
 import { registrationService } from '../services/registrationService.js'
+import logger from '../../../utils/log4js/log4js_config.js'
 
 class Registration {
 
@@ -8,7 +9,7 @@ class Registration {
             res.render('registration')
 
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
 
     }
@@ -20,7 +21,7 @@ class Registration {
             res.status(200).redirect('/api/login') 
 
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
 
     }

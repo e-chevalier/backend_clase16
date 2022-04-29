@@ -10,6 +10,7 @@ import { serverPassport } from './config/passport.js'
 import cluster from 'cluster'
 import fs from 'fs'
 import https from 'https'
+import logger from './utils/log4js/log4js_config.js';
 //import { Server as HttpServer } from 'http'
 import os from 'os'
 import yargs from 'yargs'
@@ -104,10 +105,13 @@ const argv = yargs(hideBin(process.argv))
 
 const PORT = argv.puerto
 
+logger.info(`Valor de entorno NODE_ENV: ${process.env.NODE_ENV}`);
+
+
 if (argv.modo.toUpperCase() == 'CLUSTER') {
 
     if (cluster.isPrimary) {
-        console.log(`Master Cluster PID ${process.pid} is running.`)
+        logger.log(`Master Cluster PID ${process.pid} is running.`)
 
         // setup sticky sessions
         setupMaster(httpsServer, {
@@ -123,7 +127,7 @@ if (argv.modo.toUpperCase() == 'CLUSTER') {
         }
 
         cluster.on('exit', (worker, code, signal) => {
-            console.log(`worker ${worker.process.pid} died.`)
+            logger.warn(`worker ${worker.process.pid} died.`)
             cluster.fork()
         })
 
@@ -133,9 +137,9 @@ if (argv.modo.toUpperCase() == 'CLUSTER') {
 
         const server = httpsServer.listen(PORT, (err) => {
             if (err) {
-                console.log("Error while starting server")
+                logger.error("Error while starting server")
             } else {
-                console.log(
+                logger.info(
                     `
                     ------------------------------------------------------------
                     WORKER ${server.address().port}  Process Pid: ${process.pid}
@@ -152,7 +156,7 @@ if (argv.modo.toUpperCase() == 'CLUSTER') {
         // setup connection with the primary process
         setupWorker(io);
 
-        server.on('error', error => console.log(`Error en servidorProcess Pid: ${process.pid}: ${error}`))
+        server.on('error', error => logger.error(`Error en servidorProcess Pid: ${process.pid}: ${error}`))
     }
     
 } else {
@@ -161,9 +165,9 @@ if (argv.modo.toUpperCase() == 'CLUSTER') {
 
     const server = httpsServer.listen(PORT, 'localhost', (err) => {
         if (err) {
-            console.log("Error while starting server")
+            logger.error("Error while starting server")
         } else {
-            console.log(
+            logger.info(
                 `
                 ------------------------------------------------------------
                 Servidor http escuchando en el puerto ${server.address().port}
@@ -174,7 +178,7 @@ if (argv.modo.toUpperCase() == 'CLUSTER') {
         }
     })
 
-    server.on('error', error => console.log(`Error en servidor ${error}`))
+    server.on('error', error => logger.error(`Error en servidor ${error}`))
 
 }
 

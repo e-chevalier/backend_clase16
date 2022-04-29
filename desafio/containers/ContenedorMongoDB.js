@@ -1,4 +1,4 @@
-
+import logger from "../utils/log4js/log4js_config.js"
 class ContenedorMongoDB {
 
     constructor(db_collection) {
@@ -13,11 +13,11 @@ class ContenedorMongoDB {
         try {
             let tmp = await this.db.find({}, { 'id': 1, '_id': 0 }).sort({ id: -1 }).limit(1)
             let res = tmp.length ? tmp[0].id : 0
-            console.log(res)
+            logger.info(res)
             return res
 
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 
@@ -29,13 +29,13 @@ class ContenedorMongoDB {
     async save(obj) {
 
         try {
-            //console.log(obj)
+            //logger.info(obj)
             const max = Number(await this.getMaxid())
             await this.db.create({ ...obj, id: max + 1}) /* , timestamp: Date.now()  */
             return max + 1
 
         } catch (error) {
-            console.log("Error en save method: " + error)
+            logger.error("Error en save method: " + error)
         }
 
     }
@@ -53,7 +53,7 @@ class ContenedorMongoDB {
             return res
 
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 
@@ -68,7 +68,7 @@ class ContenedorMongoDB {
             return res
 
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 
@@ -81,7 +81,7 @@ class ContenedorMongoDB {
         try {
             await this.db.deleteOne({ 'id': id })
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
 
     }
@@ -93,7 +93,7 @@ class ContenedorMongoDB {
         try {
             await this.db.deleteMany({})
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
 
     }
@@ -102,7 +102,7 @@ class ContenedorMongoDB {
         try {
             await this.db.findOneAndUpdate({ 'id': id }, prod)
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 

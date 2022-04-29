@@ -1,7 +1,7 @@
 import { Server as IOServer } from 'socket.io'
 import { normalize, schema } from "normalizr"
 import { productsMemory, productsContainer, messagesMemory, messagesContainer } from '../daos/index.js'
-
+import logger from '../utils/log4js/log4js_config.js'
 
 /**
  *  Regular expression for check email
@@ -43,7 +43,7 @@ export const serverSocketsEvents = (httpsServer) => {
             let messagesNormalized = normalize({ id: 'messages', messages: messagesOriginal }, messagesSchema)
 
             io.sockets.emit('messages', messagesNormalized)
-            console.log('¡Nuevo cliente conectado! PID: ' + process.pid)  // - Pedido 1
+            logger.info('¡Nuevo cliente conectado! PID: ' + process.pid)  // - Pedido 1
         })()
 
         socket.on('newProduct', (prod) => {
@@ -71,7 +71,7 @@ export const serverSocketsEvents = (httpsServer) => {
                     let messagesOriginal = await messagesContainer.getAll()
                     let messagesNormalized = normalize({ id: 'messages', messages: messagesOriginal }, messagesSchema)
                     io.sockets.emit('messages', messagesNormalized)
-                    console.log('¡NUEVO MENSAJE EMITIDO A TODOS LOS SOCKETS! PID: ' + process.pid)  // - Pedido 1
+                    logger.info('¡NUEVO MENSAJE EMITIDO A TODOS LOS SOCKETS! PID: ' + process.pid)  // - Pedido 1
                 })()
             }
         })

@@ -1,4 +1,5 @@
 import { loginService } from '../services/loginService.js'
+import logger from '../../../utils/log4js/log4js_config.js'
 
 class Login {
 
@@ -13,7 +14,7 @@ class Login {
             }
             
         } catch (error) {
-            console.log(error);
+            logger.error(error);
         }
     }
 
@@ -25,7 +26,7 @@ class Login {
             res.redirect('/api/viewOne')
             
         } catch (error) {
-            console.log(error);
+            logger.error(error);
         }
     }
 

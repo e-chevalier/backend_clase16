@@ -1,8 +1,10 @@
+import logger from '../utils/log4js/log4js_config.js'
+
 const container_type = process.env.npm_config_container_type ? process.env.npm_config_container_type : 'File'
-console.log("------------------ OPCIONES DE CONTENEDOR --------------------------------")
-console.log("npm run dev --container_type=[file, firestore, mongodb]")
-console.log("--------------------------------------------------------------------------")
-console.log("Container Type Selected : " + container_type)
+logger.info("------------------ OPCIONES DE CONTENEDOR --------------------------------")
+logger.info("npm run dev --container_type=[file, firestore, mongodb]")
+logger.info("--------------------------------------------------------------------------")
+logger.info("Container Type Selected : " + container_type)
 
 async function dynamicImport(container_type) {
 
@@ -11,7 +13,7 @@ async function dynamicImport(container_type) {
         const { default: ProductsDaoMemory } = await import('./products/ProductsDaoMemory.js')
         const { default: MessagesDaoMemory } = await import('./messages/MessagesDaoMemory.js')
 
-        console.log("PRODUCTS - Initializing container for Mysql")
+        logger.info("PRODUCTS - Initializing container for Mysql")
         // KNEX Config
         const { config_db } = await import('../config/databaseKnex.js')
         const { default: ProductsDaoKnex } = await import('./products/ProductsDaoKnex.js')
@@ -28,7 +30,7 @@ async function dynamicImport(container_type) {
 
 
         if (container_type.toUpperCase() === 'firestore'.toUpperCase()) {
-            console.log("MESSAGES - Initializing container for Firestore")
+            logger.info("MESSAGES - Initializing container for Firestore")
             const { default: MessagesDaoFireStore } = await import('./messages/MessagesDaoFireStore.js')
 
             // MESSAGES DAO FIRESTORE
@@ -38,7 +40,7 @@ async function dynamicImport(container_type) {
             return { productsContainer, productsMemory, messagesContainer, messagesMemory }
 
         } else if (container_type.toUpperCase() === 'mongodb'.toUpperCase()) {
-            console.log("MESSAGES - Initializing container for MongoDB Atlas")
+            logger.info("MESSAGES - Initializing container for MongoDB Atlas")
             const { default: MessagesDaoMongoDB } = await import('./messages/MessagesDaoMongoDB.js')
             // MONOGODB ATLAS CONNECTION
             const { connectMongodbAtlas } = await import('../utils/mongodbAtlas/mongodbAtlas.js')
@@ -52,7 +54,7 @@ async function dynamicImport(container_type) {
             return { productsContainer, productsMemory, messagesContainer, messagesMemory }
 
         } else { // default File
-            console.log("MESSAGES - Initializing container for File")
+            logger.info("MESSAGES - Initializing container for File")
 
             const { default: MessagesDaoFile } = await import('./messages/MessagesDaoFile.js')
 
@@ -66,7 +68,7 @@ async function dynamicImport(container_type) {
         }
 
     } catch (error) {
-        console.log(error)
+        logger.error(error)
     }
 }
 

@@ -1,3 +1,4 @@
+import logger from "../../../utils/log4js/log4js_config.js"
 class Login {
 
     async getLogin(req) {
@@ -8,17 +9,17 @@ class Login {
             const {retry} = req.query
 
             if (req.isAuthenticated()) {
-                console.log("Usuario logueado")
+                logger.info("Usuario logueado")
                 response = { status: "LOGGEDIN" }
             } else {
-                console.log("Usuario no logueado")
+                logger.info("Usuario no logueado")
                 response = { status: "NOTLOGGEDIN", retry: retry }
             }
 
             return response
 
         } catch (error) {
-            console.log(error);
+            logger.error(error);
         }
 
     }
@@ -32,7 +33,7 @@ class Login {
             return response
 
         } catch (error) {
-            console.log(error);
+            logger.error(error);
         }
 
     }

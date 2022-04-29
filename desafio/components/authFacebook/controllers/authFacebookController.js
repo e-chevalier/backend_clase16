@@ -1,14 +1,15 @@
 import { authFacebookService } from '../services/authFacebookService.js'
+import logger from '../../../utils/log4js/log4js_config.js'
 
 class AuthFacebook {
     async redirect(req, res, next) {
         try {
             let response = await authFacebookService.redirect()
-            console.log(req.user)
+            logger.info(req.user)
             res.redirect('/api/main')
             
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
 
     }

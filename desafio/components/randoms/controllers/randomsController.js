@@ -1,4 +1,5 @@
 import { randomsService } from '../services/randomsService.js'
+import logger from '../../../utils/log4js/log4js_config.js'
 
 class Randoms {
     async getRandoms(req, res, next) {
@@ -7,7 +8,7 @@ class Randoms {
 
             forked.on('message', msg => {
                 if(msg == 'ready'){
-                    console.log(msg)
+                    logger.info(msg)
                     forked.send("Esperando resultado.")
                 } else {
                     res.render('randoms', {data: msg, cant: req.query.cant || 100000000} )
@@ -15,7 +16,7 @@ class Randoms {
             })
 
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
 
     }

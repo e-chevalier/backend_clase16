@@ -1,5 +1,6 @@
 import { Database } from '../config/databaseKnex.js'
 import { dataProducts } from '../config/mockups_data.js'
+import logger from '../utils/log4js/log4js_config.js'
 
 class ContenedorKnex {
 
@@ -20,11 +21,11 @@ class ContenedorKnex {
             if (existsTable) {
                 await this.db_knex.from(table_name).insert(data);
             } else {
-                console.log("TABLE DONT EXISTS " + table_name)
+                logger.info("TABLE DONT EXISTS " + table_name)
             }
 
         } catch (error) {
-            console.log(error);
+            logger.error(error);
         }
     }
 
@@ -41,10 +42,10 @@ class ContenedorKnex {
                 });
                 await this.insertData('products', dataProducts)
             } else {
-                console.log(`Esta tabla ya existe: products`)
+                logger.info(`Esta tabla ya existe: products`)
             }
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 
@@ -58,7 +59,7 @@ class ContenedorKnex {
             return Object.values(max_id[0])[0]
 
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 
@@ -81,7 +82,7 @@ class ContenedorKnex {
             return max_id + 1
 
         } catch (error) {
-            console.log("Error en save method: " + error)
+            logger.error("Error en save method: " + error)
         }
 
     }
@@ -97,7 +98,7 @@ class ContenedorKnex {
             return res.length ? res[0] : null
 
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 
@@ -112,7 +113,7 @@ class ContenedorKnex {
             return res
 
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 
@@ -128,7 +129,7 @@ class ContenedorKnex {
             return response
 
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
 
     }
@@ -142,7 +143,7 @@ class ContenedorKnex {
             //console.table(await this.db_knex.from(this.table_name))
             return response
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
 
     }
@@ -158,7 +159,7 @@ class ContenedorKnex {
             //console.table(await this.db_knex.from(this.table_name))
             return response
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 

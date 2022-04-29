@@ -1,3 +1,4 @@
+import logger from "../../../utils/log4js/log4js_config.js"
 class Logout {
 
     async getLogout(req) {
@@ -13,11 +14,11 @@ class Logout {
                 req.session.destroy(error => {
                     if (!error) {
                         //res.json({ status: "Logout OK" })
-                        console.log(`{ status: "Logout OK - ${username}" }`)
+                        logger.info(`{ status: "Logout OK - ${username}" }`)
 
                     } else {
                         //res.json({ status: "Logout Error", body: error })
-                        console.log(`{ status: "Logout Error - ${username}", body: error }`)
+                        logger.error(`{ status: "Logout Error - ${username}", body: error }`)
                     }
                 })
             }
@@ -25,7 +26,7 @@ class Logout {
             return { status: "OK" , username: username}
 
         } catch (error) {
-            console.log(error);
+            logger.error(error);
         }
 
     }

@@ -1,4 +1,4 @@
-
+import logger from "../../../utils/log4js/log4js_config.js"
 class Registration {
 
     async getRegistration() {
@@ -7,7 +7,7 @@ class Registration {
             return { status: "OK" }
             
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 
@@ -18,7 +18,7 @@ class Registration {
             return response
 
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 

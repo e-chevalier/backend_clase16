@@ -1,4 +1,5 @@
 import fs, { stat } from 'node:fs'
+import logger from '..//utils/log4js/log4js_config.js'
 
 class ContenedorFile {
 
@@ -21,12 +22,12 @@ class ContenedorFile {
                 const max = elements.reduce((a,b) => Number(a.id) > Number(b.id) ? a:b, {id: 0} )
                 res = Number(max.id)
             } else {
-                console.log("getMaxId: ARCHIVO VACIO")
+                logger.info("getMaxId: ARCHIVO VACIO")
             }
             return res
 
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 
@@ -45,7 +46,7 @@ class ContenedorFile {
             return max + 1
 
         } catch (error) {
-            console.log("Error en save method: " + error)
+            logger.error("Error en save method: " + error)
         }
         
     }
@@ -65,12 +66,12 @@ class ContenedorFile {
                 const el = elements.find( el => el.id === id)
                 el ? res = el: res = null
             } else {
-                console.log("getById: ARCHIVO VACIO")
+                logger.info("getById: ARCHIVO VACIO")
             }
             return res
             
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 
@@ -86,13 +87,13 @@ class ContenedorFile {
             if( stats.size ) {
                 res = JSON.parse( await fs.promises.readFile(this.fileName, 'utf-8'))
             } else {
-                console.log("getAll: ARCHIVO VACIO")
+                logger.info("getAll: ARCHIVO VACIO")
             }
 
             return res
 
         } catch (error) {
-            console.log(error)            
+            logger.error(error)            
         }
     }
 
@@ -107,7 +108,7 @@ class ContenedorFile {
             await fs.promises.writeFile(this.fileName, JSON.stringify(elements.filter( el => el.id != id), null, 2))
                         
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
 
     }
@@ -119,7 +120,7 @@ class ContenedorFile {
         try {
             await fs.promises.writeFile(this.fileName, JSON.stringify([], null, 2))            
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
 
     }
@@ -133,7 +134,7 @@ class ContenedorFile {
                 await fs.promises.writeFile(this.fileName, JSON.stringify(elements, null, 2))
             }  
         } catch (error) {
-            console.log(error)   
+            logger.error(error)   
         }
     }
 

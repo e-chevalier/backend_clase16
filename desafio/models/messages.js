@@ -2,15 +2,6 @@ import mongoose from "mongoose"
 
 const messagesCollection = 'messages'
 
-// const AuthorSchema = mongoose.Schema({
-//     id: {type: String, require: true},
-//     name: {type: String, require: true},
-//     surname: {type: String, require: true},
-//     age: {type: String, require: true},
-//     alias: {type: String, require: true},
-//     avatar: {type: String, require: true, max: 250}
-// })
-
 const MessagesSchema = mongoose.Schema({
     author: {
         id: {type: String, require: true},

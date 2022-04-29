@@ -1,5 +1,6 @@
 import { dataProducts as products } from '../../config/mockups_data.js'
 import { db_firestore } from './firestore.js'
+import logger from '../log4js/log4js_config.js'
 
 
 const uploadToFirestore = () => {
@@ -8,8 +9,8 @@ const uploadToFirestore = () => {
 
     products.forEach( prod => db_collectionProducts
         .add(prod)
-        .then(data => console.log(data.id))
-        .catch(err => console.log(err))
+        .then(data => logger.info(data.id))
+        .catch(err => logger.error(err))
         .finally()
     )
 

@@ -1,3 +1,5 @@
+import logger from "../log4js/log4js_config";
+
 const getRandomIntInclusive = (min, max) => {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -20,7 +22,7 @@ const generateRandoms = (cant) => {
 
 
 process.on('message', msg => {
-    console.log(`Mensaje del padre: ${msg}`);
+    logger.info(`Mensaje del padre: ${msg}`);
     // LOGIC HERE
     const response = generateRandoms(process.argv[2])
     process.send(response)

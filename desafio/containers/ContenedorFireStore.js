@@ -1,3 +1,4 @@
+import logger from "../utils/log4js/log4js_config.js"
 
 class ContenedorFireStore {
 
@@ -21,7 +22,7 @@ class ContenedorFireStore {
             return res
 
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 
@@ -35,12 +36,12 @@ class ContenedorFireStore {
         try {
             const max = Number(await this.getMaxid())
             await this.db.collection(this.collectionPath).add({ ...obj, id: max + 1}) /*, timestamp: Date.now() */
-                .catch(err => console.log(err));
+                .catch(err => logger.error(err));
 
             return max + 1
 
         } catch (error) {
-            console.log("Error en save method: " + error)
+            logger.error("Error en save method: " + error)
         }
 
     }
@@ -59,7 +60,7 @@ class ContenedorFireStore {
             return res
 
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 
@@ -76,7 +77,7 @@ class ContenedorFireStore {
             return snapshot
 
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 
@@ -91,7 +92,7 @@ class ContenedorFireStore {
             snapshot.forEach(doc => doc.ref.delete())
 
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
 
     }
@@ -134,7 +135,7 @@ class ContenedorFireStore {
             })
             
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
 
     }
@@ -145,7 +146,7 @@ class ContenedorFireStore {
             snapshot.forEach(doc => doc.ref.update(prod))
 
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 

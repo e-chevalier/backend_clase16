@@ -1,5 +1,6 @@
 import mongoose from "mongoose"
 import { config } from '../../config/mongodbAtlas.js'
+import logger from "../log4js/log4js_config.js"
 
 const DB_PASS = config.db_pass
 const DB_DOMAIN = config.db_domain
@@ -11,9 +12,9 @@ const connectMongodbAtlas = async () => {
         const URL = `mongodb+srv://${DB_USER}:${DB_PASS}@${DB_DOMAIN}/${DB_NAME}?retryWrites=true&w=majority`
         const options = { useNewUrlParser: true, useUnifiedTopology: true }
         await mongoose.connect(URL, options)
-        console.log('MongoDB connected!!')
+        logger.info('MongoDB connected!!')
     } catch (err) {
-        console.log('Failed to connect to MongoDB', err)
+        logger.error('Failed to connect to MongoDB', err)
     }
 }
 

@@ -1,4 +1,5 @@
 import os from 'os'
+import logger from '../../..//utils/log4js/log4js_config.js'
 
 class Info {
 
@@ -43,7 +44,7 @@ class Info {
             return { status: "OK", info: info }
 
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 

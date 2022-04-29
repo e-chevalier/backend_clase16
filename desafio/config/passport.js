@@ -5,6 +5,7 @@ import faker from 'faker'
 import { fb_config } from './facebook.js'
 import * as User from '../models/users.js'
 import bCrypt from 'bcrypt'
+import logger from '../utils/log4js/log4js_config.js'
 
 export const serverPassport = (app) => {
 
@@ -34,7 +35,7 @@ export const serverPassport = (app) => {
 
                 User.users.findOneAndUpdate({ id: profile.id }, newUser, { new: true, upsert: true, lean: true }, (err, user) => {
                     if (err) {
-                        console.log("Error in login FacebookStrategy")
+                        logger.error("Error in login FacebookStrategy")
                         return done(err)
                     }
 
@@ -63,17 +64,17 @@ export const serverPassport = (app) => {
             User.users.findOne({ username: username }, (err, user) => {
 
                 if (err) {
-                    console.log("Error in login LocalStrategy")
+                    logger.error("Error in login LocalStrategy")
                     return done(err)
                 }
 
                 if (!user) {
-                    console.log("User Not Found with username: " + username);
+                    logger.info("User Not Found with username: " + username);
                     return done(null, false)
                 }
 
                 if (!isValidPassword(user, password)) {
-                    console.log("Invalid Password");
+                    logger.info("Invalid Password");
                     return done(null, false)
                 }
 
@@ -89,12 +90,12 @@ export const serverPassport = (app) => {
             User.users.findOne({ username: username }, (err, user) => {
 
                 if (err) {
-                    console.log("Error en signup LocalStrategy " + err);
+                    logger.error("Error en signup LocalStrategy " + err);
                     return done(err)
                 }
 
                 if (user) {
-                    console.log('User already exists');
+                    logger.info('User already exists');
                     return done(null, false)
                 }
 
@@ -110,11 +111,11 @@ export const serverPassport = (app) => {
 
                 User.users.create(newUser, (err, userWithId) => {
                     if (err) {
-                        console.log('Error in Saving user: ' + err);
+                        logger.error('Error in Saving user: ' + err);
                         return done(err);
                     }
-                    console.log(user)
-                    console.log('User Registration succesful');
+                    logger.info(user)
+                    logger.info('User Registration succesful');
                     return done(null, userWithId);
                 });
             })

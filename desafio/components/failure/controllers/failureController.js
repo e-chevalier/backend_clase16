@@ -1,4 +1,5 @@
 import { failureService } from '../services/failureService.js'
+import logger from '../../../utils/log4js/log4js_config.js'
 
 class Failure {
     async getFailure(req, res, next) {
@@ -8,7 +9,7 @@ class Failure {
             res.render('failure', { message_status: message })
 
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
 
     }

@@ -1,5 +1,4 @@
 import express from 'express'
-import { authFacebookController } from './controllers/authFacebookController.js'
 
 export const authFacebookApi = (app, passport) => {
 

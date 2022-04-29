@@ -1,14 +1,14 @@
-
+import logger from "../../../utils/log4js/log4js_config.js"
 class AuthFacebook {
 
     async redirect() {
         try {
-            console.log(`test`)
+            logger.info(`test`)
             // LOGIC HERE
 
             return { status: "OK" }
         } catch (error) {
-            console.log(error)
+            logger.error(error)
         }
     }
 

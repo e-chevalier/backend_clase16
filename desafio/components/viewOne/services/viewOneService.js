@@ -1,3 +1,4 @@
+import logger from "../../../utils/log4js/log4js_config.js";
 class ViewOne {
 
     async getViewOne(req) {
@@ -13,10 +14,10 @@ class ViewOne {
 
             } 
                         
-            //console.log(req.user)
+            //logger.info(req.user)
             return { status: "OK", data: {...req.user, counter: req.session.counter} }
         } catch (error) {
-            console.log(error);
+            logger.error(error);
         }
     }
 
