@@ -11,6 +11,7 @@ class Randoms {
                     logger.info(msg)
                     forked.send("Esperando resultado.")
                 } else {
+                    //res.setHeader('Cache-Control', 'no-transform')
                     res.render('randoms', {data: msg, cant: req.query.cant || 100000000} )
                 }
             })
