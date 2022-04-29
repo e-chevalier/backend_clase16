@@ -11,6 +11,7 @@ import cluster from 'cluster'
 import fs from 'fs'
 import https from 'https'
 import logger from './utils/log4js/log4js_config.js';
+import compression from 'compression'
 //import { Server as HttpServer } from 'http'
 import os from 'os'
 import yargs from 'yargs'
@@ -29,6 +30,7 @@ const credentials = {
 
 
 // Middlewares
+app.use(compression())
 app.use(cors("*"));
 app.use(cookieParser())
 // Settings
