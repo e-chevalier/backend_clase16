@@ -7,6 +7,7 @@ class Info {
             // let {status, info} = await infoService.getInfo()
 
             // res.render('info', { info: info })
+            const { verbose } = req.query
 
             let forked = await infoService.getInfo()
 
@@ -15,7 +16,10 @@ class Info {
                     logger.info(msg)
                     forked.send("Esperando resultado.")
                 } else {
+                    //FOR CHECK COMPRESSION
                     //res.setHeader('Cache-Control', 'no-transform')
+
+                    if (verbose) { console.log(msg) }
                     res.render('info', { info: msg })
                 }
             })
