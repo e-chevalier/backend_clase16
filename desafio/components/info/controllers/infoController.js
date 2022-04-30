@@ -4,7 +4,10 @@ import logger from '../../../utils/log4js/log4js_config.js'
 class Info {
     async getInfo(req, res, next) {
         try {
+            const { verbose } = req.query
             let {status, info} = await infoService.getInfo()
+
+            if (verbose) { console.log(info) }
 
             res.render('info', { info: info })
 
