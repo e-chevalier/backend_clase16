@@ -1,5 +1,5 @@
 import os from 'os'
-//import logger from '../log4js/log4js_config.js'
+//import logger from '../winston/winston_config.js'
 
 const getInfo = () => {
     const info = [

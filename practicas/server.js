@@ -4,8 +4,8 @@ import config from './config/index.js'
 import cors from 'cors'
 import { serverRoutes } from './routes/index.js'
 //import logger from './config/log4js_config.js'
-//import logger from './config/winston_config.js'
-import logger from './config/pino_config.js'
+import logger from './config/winston_config.js'
+//import logger from './config/pino_config.js'
 
 
 const PORT = config.port
@@ -21,6 +21,8 @@ app.use(cors("*"))
 serverRoutes(app)
 
 logger.info(`Valor de entorno NODE_ENV: ${process.env.NODE_ENV}`);
+logger.warn("HOLA WARN")
+logger.error("HOLA ERROR")
 
 const server = app.listen(PORT, (err) => {
     if (err) {

@@ -7,7 +7,7 @@ import { authFacebookApi } from "../components/authFacebook/index.js"
 import { failureApi } from "../components/failure/index.js"
 import { infoApi } from '../components/info/index.js'
 import { randomsApi } from '../components/randoms/index.js'
-import logger from '../utils/log4js/log4js_config.js'
+import logger from '../utils/winston/winston_config.js'
 import loggerMethodAndURLs from '../utils/middleware/loggerMethodAndURLs.js'
 
 export const serverRoutes = ( app, passport ) => {

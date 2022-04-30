@@ -5,7 +5,7 @@ import faker from 'faker'
 import { fb_config } from './facebook.js'
 import * as User from '../models/users.js'
 import bCrypt from 'bcrypt'
-import logger from '../utils/log4js/log4js_config.js'
+import logger from '../utils/winston/winston_config.js'
 
 export const serverPassport = (app) => {
 

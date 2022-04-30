@@ -1,4 +1,4 @@
-import logger from "../log4js/log4js_config.js";
+import logger from "../winston/winston_config.js";
 
 const getRandomIntInclusive = (min, max) => {
     min = Math.ceil(min);

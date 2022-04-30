@@ -1,5 +1,5 @@
 import { logoutService } from '../services/logoutService.js'
-import logger from '../../../utils/log4js/log4js_config.js';
+import logger from '../../../utils/winston/winston_config.js';
 
 class Logout {
 

@@ -1,6 +1,6 @@
 import { fork } from 'child_process'
 import getInfo from '../../../utils/js/getInfo.js'
-import logger from '../../..//utils/log4js/log4js_config.js'
+import logger from '../../..//utils/winston/winston_config.js'
 
 class Info {
 

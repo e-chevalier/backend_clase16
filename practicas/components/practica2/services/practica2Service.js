@@ -1,6 +1,6 @@
 //import logger from "../../../config/log4js_config.js"
-//import logger from "../../../config/winston_config.js"
-import logger from "../../../config/pino_config.js"
+import logger from "../../../config/winston_config.js"
+//import logger from "../../../config/pino_config.js"
 class Practica2 {
 
     

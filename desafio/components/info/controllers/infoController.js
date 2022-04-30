@@ -1,5 +1,5 @@
 import { infoService } from '../services/infoService.js'
-import logger from '../../../utils/log4js/log4js_config.js'
+import logger from '../../../utils/winston/winston_config.js'
 
 class Info {
     async getInfo(req, res, next) {

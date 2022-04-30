@@ -1,6 +1,6 @@
 import { dataProducts as products } from '../../config/mockups_data.js'
 import { db_firestore } from './firestore.js'
-import logger from '../log4js/log4js_config.js'
+import logger from '../winston/winston_config.js'
 
 
 const uploadToFirestore = () => {

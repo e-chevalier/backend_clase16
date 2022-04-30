@@ -1,6 +1,6 @@
 import mongoose from "mongoose"
 import { config } from '../../config/mongodbAtlas.js'
-import logger from "../log4js/log4js_config.js"
+import logger from "../winston/winston_config.js"
 
 const DB_PASS = config.db_pass
 const DB_DOMAIN = config.db_domain

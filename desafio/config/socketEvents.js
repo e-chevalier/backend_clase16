@@ -1,7 +1,7 @@
 import { Server as IOServer } from 'socket.io'
 import { normalize, schema } from "normalizr"
 import { productsMemory, productsContainer, messagesMemory, messagesContainer } from '../daos/index.js'
-import logger from '../utils/log4js/log4js_config.js'
+import logger from '../utils/winston/winston_config.js'
 
 /**
  *  Regular expression for check email

@@ -1,5 +1,5 @@
 import { failureService } from '../services/failureService.js'
-import logger from '../../../utils/log4js/log4js_config.js'
+import logger from '../../../utils/winston/winston_config.js'
 
 class Failure {
     async getFailure(req, res, next) {

@@ -10,7 +10,7 @@ import { serverPassport } from './config/passport.js'
 import cluster from 'cluster'
 import fs from 'fs'
 import https from 'https'
-import logger from './utils/log4js/log4js_config.js';
+import logger from './utils/winston/winston_config.js';
 import compression from 'compression'
 //import { Server as HttpServer } from 'http'
 import os from 'os'
