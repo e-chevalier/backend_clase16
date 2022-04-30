@@ -39,7 +39,8 @@
   "scripts": {
     "start": "node server.js",
     "dev": "NODE_ENV=DEV nodemon server.js",
-    "prod": "NODE_ENV=PROD nodemon server.js"
+    "prod": "NODE_ENV=PROD nodemon server.js",
+    "prof": "NODE_ENV=PROD node --prof server.js"
   },
   "type": "module",
   "description": "",

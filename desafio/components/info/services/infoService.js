@@ -1,5 +1,5 @@
 import { fork } from 'child_process'
-//import getInfo from '../../../utils/js/getInfo.js'
+import getInfo from '../../../utils/js/getInfo.js'
 import logger from '../../..//utils/log4js/log4js_config.js'
 
 class Info {
@@ -7,12 +7,12 @@ class Info {
     async getInfo() {
         try {
 
-            // let info = getInfo()
-            // return { status: "OK", info: info }
+            let info = getInfo()
+            return { status: "OK", info: info }
 
-            let url_getinfo = process.cwd() + '/utils/js/getInfo.js'
-            const forked = fork(url_getinfo)
-            return forked
+            // let url_getinfo = process.cwd() + '/utils/js/getInfo.js'
+            // const forked = fork(url_getinfo)
+            // return forked
 
         } catch (error) {
             logger.error(error)

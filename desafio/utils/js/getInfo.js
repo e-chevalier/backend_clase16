@@ -1,5 +1,5 @@
 import os from 'os'
-import logger from '../log4js/log4js_config.js'
+//import logger from '../log4js/log4js_config.js'
 
 const getInfo = () => {
     const info = [
@@ -40,15 +40,15 @@ const getInfo = () => {
     return info
 }
 
-//export default getInfo
+export default getInfo
 
-process.on('message', msg => {
-    logger.info(`Mensaje del padre: ${msg}`);
-    // LOGIC HERE
-    const response = getInfo()
-    process.send(response)
-    process.exit()
-})
+// process.on('message', msg => {
+//     logger.info(`Mensaje del padre: ${msg}`);
+//     // LOGIC HERE
+//     const response = getInfo()
+//     process.send(response)
+//     process.exit()
+// })
 
-process.send('ready')
+// process.send('ready')
 
