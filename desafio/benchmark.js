@@ -22,7 +22,9 @@ function run(url){
 
 }
 
-logger.info("Running all benchmarks in parallel ...")
+logger.info("Running all benchmarks ...")
 
 run('https://localhost:8080/api/info')
 run('https://localhost:8080/api/info?verbose=1')
+
+

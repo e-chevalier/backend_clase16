@@ -42,7 +42,8 @@
     "prod": "NODE_ENV=PROD nodemon server.js",
     "prof": "NODE_ENV=PROD node --prof server.js",
     "test": "node benchmark.js",
-    "start0x": "NODE_ENV=PROD 0x server.js"
+    "start0x": "NODE_ENV=PROD 0x server.js",
+    "inspect": "NODE_ENV=PROD node --inspect server.js"
   },
   "type": "module",
   "description": "",
